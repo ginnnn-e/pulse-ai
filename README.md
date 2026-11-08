@@ -59,7 +59,7 @@ flowchart LR
 ### Database Design: Relational vs. Vector Storage
 Supabase separates clinical data into two distinct tables:
 - **`patients` (Standard Relational Table, No Vectors)**: Stores patient profiles, queue status, visit timestamps, and physician notes using composite primary key `(full_name, created_at)` to support repeat clinic visits.
-- **`medical_documents` (Vector Search Table using `pgvector`)**: Stores chunked text from clinical guidelines and leaflets along with a 768-dimensional `vector(768)` column (`gemini-embedding-001`). `pgvector` enables native PostgreSQL cosine distance matching (`<=>`) via the `match_medical_documents` RPC function.
+- **`medical_documents` (Vector Search Table using `pgvector`)**: Stores chunked text from clinical guidelines and leaflets along with a 768-dimensional `vector(768)` column (`text-embedding-004`). `pgvector` enables native PostgreSQL cosine distance matching (`<=>`) via the `match_medical_documents` RPC function.
 
 | Stage | Endpoint | Description |
 | :--- | :--- | :--- |
@@ -103,10 +103,10 @@ We evaluated `pytesseract` against `PaddleOCR` (`PP-OCRv4_mobile`) across typed 
 
 ### Prerequisites
 - Node.js 18+ and Python 3.10+
-- `.env` configured with `GEMINI_API_KEY`, `VITE_SUPABASE_URL`, and `VITE_SUPABASE_ANON_KEY`
+- `.env` configured with `GEMINI_API_KEY`, `SUPABASE_URL`, and `SUPABASE_KEY` (see `.env.example`)
 - Run `supabase_schema.sql` in the **Supabase SQL Editor** to initialize `pgvector` tables and storage policies.
 
-### Run Backend (`http://127.0.0.1:5000`)
+### Run Backend (`http://127.0.0.1:5001`)
 ```bash
 source .venv/bin/activate
 python app.py
