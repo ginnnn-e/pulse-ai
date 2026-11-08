@@ -1,0 +1,37 @@
+================================================================================
+IBUPROFEN ORAL TABLETS & SUSPENSION (400mg)
+Patient Information Leaflet — PulseAI Clinical Reference Library
+================================================================================
+
+1. WHAT IS IBUPROFEN AND WHAT IS IT USED FOR?
+Ibuprofen belongs to a group of medicines called Non-Steroidal Anti-Inflammatory 
+Drugs (NSAIDs). It works by inhibiting cyclooxygenase (COX-1 and COX-2) enzymes, 
+reducing the production of prostaglandins that cause pain, fever, and inflammation.
+It is indicated for:
+- Relief of acute mild to moderate pain (headache, toothache, muscle aches, back pain)
+- Symptomatic treatment of joint sprains, tendonitis, and soft tissue inflammation
+- Reduction of fever associated with common respiratory infections
+- Management of primary dysmenorrhea (menstrual cramping)
+
+2. DOSAGE AND ADMINISTRATION
+- Adults and adolescents over 12 years: Take one 400mg tablet every 4 to 6 hours 
+  as needed with water.
+- Maximum daily dose: Do not exceed 1200mg (3 tablets) in any 24-hour period 
+  unless specifically prescribed by a physician.
+- Best taken with food, immediately after meals, or with a glass of milk to 
+  minimize stomach irritation.
+- Use the lowest effective dose for the shortest duration necessary to control symptoms.
+
+3. CONTRAINDICATIONS & SAFETY WARNINGS
+Do NOT take Ibuprofen if:
+- You have an active stomach or peptic ulcer, gastrointestinal bleeding, or perforation.
+- You have a history of severe allergic reactions (asthma, bronchospasm, hives) 
+  triggered by aspirin or other NSAIDs.
+- You suffer from severe heart failure, severe liver cirrhosis, or end-stage kidney disease.
+- You are in the third trimester of pregnancy.
+- Avoid drinking alcohol during treatment, as it increases the risk of stomach ulceration.
+
+4. POSSIBLE SIDE EFFECTS
+- Common (mild): Heartburn, indigestion, nausea, mild stomach cramps, dizziness.
+- Serious (seek immediate medical attention): Black tarry stools, vomiting blood, 
+  sudden chest pain, difficulty breathing, or swelling of the face, tongue, and throat.

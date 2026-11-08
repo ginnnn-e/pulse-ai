@@ -1,0 +1,36 @@
+================================================================================
+PATIENT CARE GUIDE: ESSENTIAL HYPERTENSION AND BLOOD PRESSURE CONTROL
+PulseAI Preventive Cardiology Reference Library
+================================================================================
+
+1. UNDERSTANDING BLOOD PRESSURE READINGS
+Blood pressure is recorded as two numbers (mmHg):
+- Systolic (top number): Pressure in arteries when your heart beats.
+- Diastolic (bottom number): Pressure when your heart rests between beats.
+- Normal: Under 120/80 mmHg.
+- Stage 1 Hypertension: 130-139 / 80-89 mmHg.
+- Stage 2 Hypertension: 140/90 mmHg or higher across repeat visits.
+
+2. MEDICATION ADHERENCE INSTRUCTIONS
+- Antihypertensive medications (e.g. Amlodipine, Lisinopril, Losartan) work 
+  best when taken at the same time every day (e.g. morning with breakfast).
+- Never stop taking your blood pressure medication abruptly, even if you feel 
+  well. High blood pressure is often a "silent" condition with no physical symptoms.
+- If you miss a dose, take it as soon as you remember unless it is almost time 
+  for your next dose. Never take a double dose.
+
+3. DIETARY AND LIFESTYLE TARGETS (DASH DIET)
+- Sodium restriction: Limit salt intake to less than 2,000mg daily (< 1 teaspoon).
+- Potassium enrichment: Increase intake of fresh leafy vegetables, avocados, 
+  bananas, and legumes.
+- Exercise: Aim for at least 150 minutes of moderate aerobic exercise (brisk walking, 
+  swimming, cycling) weekly.
+- Weight management: Even a 5% reduction in body weight significantly lowers blood pressure.
+
+4. HYPERTENSIVE CRISIS — WHEN TO GO TO THE EMERGENCY DEPARTMENT
+Check into an emergency room immediately if blood pressure is over 180/120 mmHg 
+accompanied by:
+- Severe "thunderclap" headache
+- Sudden blurred vision or vision loss
+- Chest pain, tightness, or shortness of breath
+- Numbness or weakness on one side of the face or body

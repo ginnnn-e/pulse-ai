@@ -1,0 +1,33 @@
+================================================================================
+CLINICAL PRACTICE GUIDELINE: ACUTE LATERAL ANKLE SPRAIN REHABILITATION
+PulseAI Orthopedic & Sports Medicine Clinical Protocol
+================================================================================
+
+1. CLINICAL OVERVIEW & MECHANISM
+Lateral ligament sprains are the most common musculoskeletal injury in active individuals, 
+typically resulting from inversion stress with plantarflexion. The anterior talofibular 
+ligament (ATFL) is damaged first, followed by the calcaneofibular ligament (CFL).
+
+2. PHASE 1: ACUTE MANAGEMENT (FIRST 48-72 HOURS) — THE P.O.L.I.C.E. PROTOCOL
+- Protection: Apply an elastic tubular bandage or semi-rigid ankle stirrup brace. 
+  Avoid rigid casts whenever possible.
+- Optimal Loading: Encourage gentle pain-free active range of motion (ankle pumps, 
+  tracing the alphabet with toes) starting from Day 1 to promote collagen alignment.
+- Ice (Cryotherapy): Apply crushed ice in a towel to the lateral malleolus for 
+  15-20 minutes every 2-3 hours during waking hours.
+- Compression: Wrap from the base of the toes up to the mid-calf with consistent 
+  moderate tension to control edema.
+- Elevation: Elevate the foot above the level of the heart whenever resting.
+
+3. ANALGESIA & PAIN MANAGEMENT
+- Short-term oral NSAIDs (such as Ibuprofen 400mg three times daily with food) 
+  combined with Paracetamol 1000mg up to four times daily offer effective analgesia.
+- Avoid prolonged total bed rest; early protected weight-bearing with crutches 
+  hastens return to normal walking.
+
+4. RED FLAGS & EMERGENCY CRITERIA (OTTAWA ANKLE RULES)
+Obtain plain radiographs or seek urgent medical review if:
+- Inability to bear weight immediately after the injury and in the clinic (4 steps).
+- Bone tenderness along the posterior 6cm of the lateral or medial malleolus.
+- Severe pain at the base of the 5th metatarsal or navicular bone.
+- Progressive numbness or tingling across the top of the foot or toes.

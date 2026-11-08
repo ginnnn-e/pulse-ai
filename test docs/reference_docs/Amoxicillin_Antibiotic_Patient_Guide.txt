@@ -1,0 +1,36 @@
+================================================================================
+AMOXICILLIN TRIHYDRATE (500mg) — ANTIMICROBIAL THERAPY GUIDE
+PulseAI Clinical Pharmacology Reference Document
+================================================================================
+
+1. THERAPEUTIC INDICATIONS
+Amoxicillin is a moderate-spectrum beta-lactam antibiotic used to treat susceptible 
+bacterial infections in adults and pediatric patients:
+- Upper and lower respiratory tract infections (streptococcal pharyngitis, sinusitis, 
+  bronchitis, and community-acquired pneumonia)
+- Acute otitis media (middle ear infection)
+- Uncomplicated skin and soft tissue infections
+- Uncomplicated urinary tract infections (UTIs)
+NOTE: Amoxicillin is completely ineffective against viral infections such as colds, 
+flu, or COVID-19.
+
+2. DOSAGE AND COURSE COMPLETION
+- Standard adult dosage: 500mg orally every 8 hours (three times daily) or 875mg 
+  every 12 hours.
+- Take with or without food. Swallow capsules whole with a full glass of water.
+- CRITICAL INSTRUCTION: You must complete the entire 5-to-7 day prescribed course 
+  even if your symptoms improve after 48 hours. Stopping antibiotics early allows 
+  surviving bacteria to mutate, leading to infection recurrence and antibiotic resistance.
+
+3. DRUG INTERACTIONS AND PRECAUTIONS
+- Penicillin Allergy: Inform your doctor immediately if you have had hives or 
+  anaphylaxis to penicillin or ampicillin.
+- Oral Contraceptives: Amoxicillin may temporarily reduce the effectiveness of 
+  birth control pills. Use an additional non-hormonal barrier method (such as condoms).
+- Probiotics: Stagger probiotic supplements at least 2 hours apart from amoxicillin 
+  to preserve healthy gut flora.
+
+4. ADVERSE REACTIONS
+- Common: Mild diarrhea, nausea, vomiting, loss of appetite.
+- Warning Signs: Severe watery diarrhea (>5 times daily), severe abdominal cramps, 
+  or widespread skin rash. Contact the clinic immediately if these occur.
