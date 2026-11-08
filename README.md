@@ -9,16 +9,36 @@
 - **Automated Patient Intake (`PaddleOCR` + `Gemini Flash`)**: Extracts patient registration fields (`full_name`, `dob`, `contact`, `policy_number`, `complaint`) from uploaded PDFs and handwritten forms with real-time empty-field and phone-number validation.
 - **Physician Consultation & Knowledge Indexing**: Doctors record diagnoses, specify what symptom each prescribed medication targets, and upload clinical reference documents (guidelines, medication leaflets, lab reports) directly into the vector database.
 - **RAG Post-Consultation Patient Portal**: Patients view a plain-language breakdown of their diagnosis and prescriptions, chat with a **RAG Medical Assistant** grounded in their consultation records and uploaded medical documents (with source citations), and export an itemized **Quotation PDF**.
-- **Chatbot Analytics Dashboard**: Tracks query volume, unique patients assisted, RAG retrieval hit rate, response latency (`ms`), topic categories, and Q&A audit logs.
 
 ---
 
 ## 2. System Architecture & RAG Pipeline
 
-```text
-[1. Intake]       Document Upload (.pdf/.jpg) ──► pypdf / PaddleOCR ──► Text-Only Gemini Flash ──► Validated JSON
-[2. Indexing]     Consultation Notes + Uploaded Medical Docs ──► Chunking (650 chars) ──► 768-d Embeddings ──► pgvector
-[3. RAG Chatbot]  Patient Question ──► Query Embedding ──► Top-K Cosine Similarity ──► Grounded Answer + Citations
+```mermaid
+flowchart LR
+    subgraph Intake["1. Patient Intake"]
+        A["Registration Form (.pdf / .jpg)"] --> B["pypdf / PaddleOCR"]
+        B --> C["Raw OCR Text Only"]
+        C --> D["Gemini Flash"]
+        D --> E[("Supabase patients")]
+    end
+
+    subgraph Indexing["2. Knowledge Indexing"]
+        F["Medical Reference PDF"] --> G["Text Chunking (600 chars)"]
+        G --> H["Embedding Model (text-embedding-004)"]
+        H --> I[("Supabase pgvector (medical_documents)")]
+    end
+
+    subgraph Chat["3. Grounded Care Assistant"]
+        J["Patient Question"] --> K["Cosine Search (match_medical_documents)"]
+        I -.-> K
+        E -.-> L["Patient Record Context"]
+        K --> M["Top Clinical Passages"]
+        L --> N["Grounded Prompt"]
+        M --> N
+        N --> O["Gemini Flash"]
+        O --> P["Plain-Language Answer + Citations"]
+    end
 ```
 
 ### Chatbot Response Generation Pipeline
@@ -32,7 +52,6 @@ flowchart TD
     C --> F["Compose Grounded Context Prompt"]
     E --> F
     F --> G["Gemini Flash (Structured JSON Generation)"]
-    G --> H["Save Telemetry to Supabase chat_logs"]
     G --> I["Stream Plain-Language Response & Citations to Patient"]
 ```
 
@@ -54,7 +73,7 @@ Supabase separates clinical data into two distinct tables:
 | **2. Patient Registration** | `POST /register` | Validates required fields and digits-only phone numbers before creating the patient queue entry (`status: "Registered"`). |
 | **3. RAG Document Indexing** | `POST /upload-medical-doc` | Splits uploaded medical reference documents into overlapping chunks (`600` chars, `100` overlap), computes 768-dimensional embeddings (`gemini-embedding-001` / `text-embedding-004`), and indexes them in Supabase `pgvector` (`medical_documents`). |
 | **4. RAG Medical Chatbot** | `POST /chat` | Embeds the patient's question, retrieves the top-$k$ most relevant chunks via `match_medical_documents` (cosine similarity), and generates a grounded response with source citations. |
-| **5. Quotation & Analytics** | `POST /quotation-pdf` & `GET /analytics` | Generates downloadable itemized billing PDFs and aggregates chatbot telemetry (`chat_logs`). |
+| **5. Patient Quotation** | `POST /quotation-pdf` | Generates a downloadable itemized billing PDF with breakdown of consultation fees, prescribed medications, and insurance coverage. |
 
 ---
 
