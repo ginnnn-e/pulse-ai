@@ -22,11 +22,18 @@
   <img src="docs/screenshots/01_staff_dashboard.png" alt="Staff Intake Dashboard" width="100%" />
 </p>
 
-### 2. Physician Consultation Interface
-> *Physicians review intake complaints, enter definitive diagnoses, map medications to symptoms, and record patient-facing instructions.*
+### 2. Physician Consultation Interface & Clinical Records
+> *Physicians review intake complaints across the two-tier queue, enter definitive diagnoses, map prescribed medications to targeted symptoms, and record patient-facing instructions.*
 
 <p align="center">
   <img src="docs/screenshots/02_doctor_interface.png" alt="Doctor Consultation Interface" width="100%" />
+</p>
+
+#### Physician Consultation Modal
+> *Dedicated clinical modal allowing physicians to inspect presenting complaints, edit diagnoses, specify targeted symptoms for each prescription row, and record consultation notes.*
+
+<p align="center">
+  <img src="docs/screenshots/02b_physician_consultation_modal.png" alt="Physician Consultation Modal" width="100%" />
 </p>
 
 ### 3. Grounded Patient Portal & RAG Medical Assistant
