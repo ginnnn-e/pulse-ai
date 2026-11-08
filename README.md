@@ -41,15 +41,13 @@ flowchart LR
     end
 ```
 
-### Chatbot Response Pipeline
+### Chatbot Response Generation (Step-by-Step)
 
-```mermaid
-flowchart LR
-    Q["Question"] --> P["Patient Record"]
-    Q --> D["pgvector Search"]
-    P & D --> LLM["Gemini Flash"]
-    LLM --> A["Answer + Citations"]
-```
+1. **Patient Record Retrieval (`Supabase`)**: Fetches the patient's verified clinical record from the `patients` table—including physician diagnosis, prescribed medications, exact dosages, intake frequency, and administration instructions.
+2. **Query Vectorization (`text-embedding-004`)**: Converts the patient's natural-language inquiry into a 768-dimensional dense vector embedding.
+3. **Semantic Similarity Search (`Supabase pgvector`)**: Executes the PostgreSQL stored procedure `match_medical_documents`, performing cosine distance search (`<=>`) across all uploaded clinical PDFs to retrieve the top-4 most relevant passage chunks.
+4. **Context Assembly (`Python / Flask`)**: Constructs a grounded system prompt combining the patient's consultation notes, retrieved reference excerpts, and recent conversation history—with strict instructions to refuse any out-of-scope or undocumented queries.
+5. **Grounded Generation (`Gemini 3.5 Flash`)**: Synthesizes a plain-language, patient-friendly response with clickable document source citations, structured as a clean JSON payload.
 
 ### RAG Pipeline: Ingestion to Response Generation
 
