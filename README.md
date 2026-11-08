@@ -9,10 +9,50 @@
 - **Automated Patient Intake (`PaddleOCR` + `Gemini Flash`)**: Extracts patient registration fields (`full_name`, `dob`, `contact`, `policy_number`, `complaint`) from uploaded PDFs and handwritten forms with real-time empty-field and phone-number validation.
 - **Physician Consultation & Knowledge Indexing**: Doctors record diagnoses, specify what symptom each prescribed medication targets, and upload clinical reference documents (guidelines, medication leaflets, lab reports) directly into the vector database.
 - **RAG Post-Consultation Patient Portal**: Patients view a plain-language breakdown of their diagnosis and prescriptions, chat with a **RAG Medical Assistant** grounded in their consultation records and uploaded medical documents (with source citations), and export an itemized **Quotation PDF**.
+- **Assistant Telemetry & RAGAS Quality Monitoring**: Tracks real-time faithfulness and context relevance metrics alongside response latencies and full conversation audit trails.
 
 ---
 
-## 2. System Architecture & RAG Pipeline
+## 2. Product Walkthrough & Screenshots
+
+### 1. Staff Intake Dashboard
+> *Automated handwritten/digital patient intake extraction with PaddleOCR and Gemini Flash, paired with a two-tier queue (Awaiting Consultation FIFO vs. Completed Consultations).*
+
+<p align="center">
+  <img src="docs/screenshots/01_staff_dashboard.png" alt="Staff Intake Dashboard" width="100%" />
+</p>
+
+### 2. Physician Consultation Interface
+> *Physicians review intake complaints, enter definitive diagnoses, map medications to symptoms, and record patient-facing instructions.*
+
+<p align="center">
+  <img src="docs/screenshots/02_doctor_interface.png" alt="Doctor Consultation Interface" width="100%" />
+</p>
+
+### 3. Grounded Patient Portal & RAG Medical Assistant
+> *Post-consultation summary, itemized quotation breakdown, and a clinical chatbot citing exact reference leaflets and consultation notes.*
+
+<p align="center">
+  <img src="docs/screenshots/03_patient_portal_chat.png" alt="Patient Portal and RAG Assistant" width="100%" />
+</p>
+
+### 4. Reference Document Knowledge Base
+> *Upload clinic care guidelines, medication leaflets, and FAQs chunked into 600-character segments and vectorized with `text-embedding-004`.*
+
+<p align="center">
+  <img src="docs/screenshots/04_reference_documents.png" alt="Reference Documents Knowledge Base" width="100%" />
+</p>
+
+### 5. Assistant Telemetry & RAGAS Analytics
+> *Production observability showing aggregated Faithfulness and Context Relevance scores, response latencies, topic distributions, and complete interaction audit logs.*
+
+<p align="center">
+  <img src="docs/screenshots/05_assistant_telemetry_ragas.png" alt="Assistant Telemetry and RAGAS Analytics" width="100%" />
+</p>
+
+---
+
+## 3. System Architecture & RAG Pipeline
 
 ```mermaid
 flowchart LR
@@ -84,7 +124,7 @@ Both metrics ($0.0 \text{--} 1.0$) and roundtrip latencies are logged to `public
 
 ---
 
-## 3. OCR Evaluation & Token Optimization
+## 4. OCR Evaluation & Token Optimization
 
 ### A. `pytesseract` vs. `PaddleOCR` (`PP-OCRv4`)
 We evaluated `pytesseract` against `PaddleOCR` (`PP-OCRv4_mobile`) across typed PDFs, neat block handwriting, and freehand cursive camera photos:
@@ -112,7 +152,7 @@ We evaluated `pytesseract` against `PaddleOCR` (`PP-OCRv4_mobile`) across typed 
 
 ---
 
-## 4. Quick Start
+## 5. Quick Start
 
 ### Prerequisites
 - Node.js 18+ and Python 3.10+
