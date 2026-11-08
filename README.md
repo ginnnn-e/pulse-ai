@@ -171,7 +171,29 @@ We evaluated `pytesseract` against `PaddleOCR` (`PP-OCRv4_mobile`) across typed 
 
 ---
 
-## 5. Quick Start
+## 5. Future Work & Engineering Roadmap
+
+### A. Advanced Handwriting, Multipage Intake & Next-Gen OCR
+- **Multipage PDF & Batch Form Ingestion**: Expand the intake engine to process multipage clinical questionnaires, insurance claim attachments, and multipage hospital discharge summaries with cross-page entity resolution.
+- **Next-Gen Handwriting & Specialized Vision Models**: Benchmark specialized Document AI and handwriting-oriented architectures including **Microsoft `TrOCR`** (`trocr-base-handwritten`), **Donut** (OCR-free document understanding), and **GOT-OCR2.0** against challenging medical scripts, rushed doctor notes, and unruled cursive writing.
+- **Tiered Multi-Modal Fallback**: Implement dynamic token budgeting that runs low-cost text OCR first (~145 tokens) and escalates only low-confidence or missing fields to multimodal vision tiles (`<=768px`) to minimize inference costs while maximizing field accuracy.
+
+### B. Role-Based Identity & Access Management (IAM)
+- **Separated User Portals & Access Tiers**: Decouple the consolidated single-page navigation into distinct authenticated routes tailored for each clinical role:
+  - **Front Desk / Reception**: Restricted to patient intake, identity verification, and queue registration.
+  - **Attending Physicians**: Dedicated clinical workspace with diagnostic inputs, prescription builder, and medical record authorization.
+  - **Patients**: Secure authentication (via OTP or magic link) restricted strictly to their personal consultation summary, billing quotation, and grounded chat history.
+  - **Clinical Administrators**: System telemetry, RAGAS observability dashboard, document vectorization library, and audit trails.
+- **Supabase Row-Level Security (RLS)**: Enforce strict database-level security policies (`auth.uid() = patient_id`) ensuring patients cannot access other records or query unassigned clinical notes.
+
+### C. Enhanced Clinical RAG & Safety Guardrails
+- **Hybrid Search (Dense Vector + BM25 Lexical Keyword)**: Combine `pgvector` cosine similarity with PostgreSQL full-text search (`tsvector` / Reciprocal Rank Fusion) to ensure exact-match precision for medical codes (ICD-10), drug dosages, and brand names.
+- **Semantic Caching & Automated Clinical Triaging**: Cache verified answers to common post-consultation inquiries to reduce token consumption and latency, and introduce red-flag heuristic classifiers to immediately route urgent symptoms (e.g., chest pain, severe allergic reaction) to emergency emergency services.
+- **Multi-Turn RAGAS Automated Auditing**: Run automated synthetic evaluations on conversation datasets using the full RAGAS framework (Answer Relevance, Context Recall, Aspect Critique) to proactively monitor against guideline drift.
+
+---
+
+## 6. Quick Start
 
 ### Prerequisites
 - Node.js 18+ and Python 3.10+
