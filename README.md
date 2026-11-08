@@ -57,17 +57,32 @@ flowchart LR
 4. **Response Generation**: The retrieved clinical excerpts, the patient's consultation notes (diagnosis, prescriptions, instructions), and recent conversation history are compiled into a grounded prompt. **Gemini 3.5 Flash** (`gemini-3.5-flash-lite` fallback) synthesizes a plain-language answer with citation references—strictly refusing any questions not covered in the provided clinic documents.
 
 ### Database Design: Relational vs. Vector Storage
-Supabase separates clinical data into two distinct tables:
-- **`patients` (Standard Relational Table, No Vectors)**: Stores patient profiles, queue status, visit timestamps, and physician notes using composite primary key `(full_name, created_at)` to support repeat clinic visits.
+Supabase separates clinical data into three primary tables:
+- **`patients` (Relational Table)**: Stores patient profiles, queue status, visit timestamps, and physician notes using composite primary key `(full_name, created_at)` to support repeat clinic visits.
 - **`medical_documents` (Vector Search Table using `pgvector`)**: Stores chunked text from clinical guidelines and leaflets along with a 768-dimensional `vector(768)` column (`text-embedding-004`). `pgvector` enables native PostgreSQL cosine distance matching (`<=>`) via the `match_medical_documents` RPC function.
+- **`chat_logs` (Telemetry & Evaluation Table)**: Records every patient-assistant interaction with patient ID, question, answer, topic category, cited references, latency, and single-pass RAGAS quality scores.
+
+### RAGAS Evaluation Metrics Calculation
+To ensure clinical safety and groundedness without tripling LLM token cost or latency, PulseAI evaluates each response using a single-pass RAGAS assessment model alongside cosine retrieval:
+
+1. **Faithfulness Score ($F$)**:
+   $$\text{Faithfulness} = \frac{|\text{Claims in Answer Grounded in Context}|}{|\text{Total Claims in Answer}|}$$
+   - **Clinical Purpose**: Guarantees zero hallucination by verifying that dosage instructions, contraindications, and medical advice strictly match the uploaded clinical documents or consultation notes.
+
+2. **Context Relevance Score ($R$)**:
+   $$\text{Context Relevance} = \frac{|\text{Retrieved Sentences Addressing Question}|}{|\text{Total Retrieved Sentences}|}$$
+   - **Clinical Purpose**: Validates retrieval precision, ensuring noise or irrelevant reference chunks do not pollute the generation prompt.
+
+Both metrics ($0.0 \text{--} 1.0$) and roundtrip latencies are logged to `public.chat_logs` and monitored in the **Chatbot Analytics** dashboard with full interaction audit trails.
 
 | Stage | Endpoint | Description |
 | :--- | :--- | :--- |
 | **1. OCR & Extraction** | `POST /extract` | Stores file in Supabase Storage (`documents` bucket), extracts raw text via `pypdf` or `PaddleOCR`, and sends **text only** to Gemini Flash to output structured JSON. |
 | **2. Patient Registration** | `POST /register` | Validates required fields and digits-only phone numbers before creating the patient queue entry (`status: "Registered"`). |
-| **3. RAG Document Indexing** | `POST /upload-medical-doc` | Splits uploaded medical reference documents into overlapping chunks (`600` chars, `100` overlap), computes 768-dimensional embeddings (`gemini-embedding-001` / `text-embedding-004`), and indexes them in Supabase `pgvector` (`medical_documents`). |
-| **4. RAG Medical Chatbot** | `POST /chat` | Embeds the patient's question, retrieves the top-$k$ most relevant chunks via `match_medical_documents` (cosine similarity), and generates a grounded response with source citations. |
-| **5. Patient Quotation** | `POST /quotation-pdf` | Generates a downloadable itemized billing PDF with breakdown of consultation fees, prescribed medications, and insurance coverage. |
+| **3. RAG Document Indexing** | `POST /upload-medical-doc` | Splits uploaded medical reference documents (including clinic care and post-consultation FAQ leaflets) into overlapping chunks (`600` chars, `100` overlap), computes 768-dimensional embeddings (`gemini-embedding-001` / `text-embedding-004`), and indexes them in Supabase `pgvector` (`medical_documents`). |
+| **4. RAG Medical Chatbot** | `POST /chat` | Embeds the patient's question, retrieves top-$k$ relevant chunks via `match_medical_documents` (cosine similarity), evaluates single-pass RAGAS faithfulness/relevance, logs telemetry to `chat_logs`, and returns a grounded response with source citations. |
+| **5. Assistant Telemetry** | `GET /analytics` | Aggregates mean RAGAS faithfulness, context relevance, average response latency, topic distributions, and historical interaction audit logs from `chat_logs`. |
+| **6. Patient Quotation** | `POST /quotation-pdf` | Generates a downloadable itemized billing PDF with breakdown of consultation fees, prescribed medications, and insurance coverage. |
 
 ---
 
