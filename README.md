@@ -46,7 +46,7 @@ flowchart LR
 | **1. OCR & Extraction** | `POST /extract` | Stores file in Supabase Storage (`documents` bucket), extracts raw text via `pypdf` or `PaddleOCR`, and sends **text only** to Gemini Flash to output structured JSON. |
 | **2. Patient Registration** | `POST /register` | Validates required fields and digits-only phone numbers before creating the patient queue entry (`status: "Registered"`). |
 | **3. RAG Document Indexing** | `POST /upload-medical-doc` | Splits uploaded medical reference documents (including clinic care and post-consultation FAQ leaflets) into overlapping chunks (`600` chars, `100` overlap), computes 768-dimensional embeddings (`gemini-embedding-001` / `text-embedding-004`), and indexes them in Supabase `pgvector` (`medical_documents`). |
-| **4. RAG Medical Chatbot** | `POST /chat` | Embeds the patient's question, retrieves top-$k$ relevant chunks via `match_medical_documents` (cosine similarity), evaluates single-pass RAGAS faithfulness/relevance, logs telemetry to `chat_logs`, and returns a grounded response with source citations. |
+| **4. RAG Medical Chatbot** | `POST /chat` | Embeds the patient's question, retrieves top-k relevant chunks via `match_medical_documents` (cosine similarity), evaluates single-pass RAGAS faithfulness/relevance, logs telemetry to `chat_logs`, and returns a grounded response with source citations. |
 | **5. Assistant Telemetry** | `GET /analytics` | Aggregates mean RAGAS faithfulness, context relevance, average response latency, topic distributions, and historical interaction audit logs from `chat_logs`. |
 | **6. Patient Quotation** | `POST /quotation-pdf` | Generates a downloadable itemized billing PDF with breakdown of consultation fees, prescribed medications, and insurance coverage. |
 
