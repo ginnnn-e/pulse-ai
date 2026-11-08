@@ -41,18 +41,14 @@ flowchart LR
     end
 ```
 
-### Chatbot Response Generation Pipeline
+### Chatbot Response Pipeline
 
 ```mermaid
-flowchart TD
-    A["Patient Question"] --> B["Lookup Patient Record (Supabase patients)"]
-    B --> C["Diagnosis, Prescriptions, Dosage, Frequency & Complaint"]
-    A --> D["Semantic Document Search (pgvector: match_medical_documents)"]
-    D --> E["Top-K Matching Clinical Passages (Guides & Leaflets)"]
-    C --> F["Compose Grounded Context Prompt"]
-    E --> F
-    F --> G["Gemini Flash (Structured JSON Generation)"]
-    G --> I["Stream Plain-Language Response & Citations to Patient"]
+flowchart LR
+    Q["Question"] --> P["Patient Record"]
+    Q --> D["pgvector Search"]
+    P & D --> LLM["Gemini Flash"]
+    LLM --> A["Answer + Citations"]
 ```
 
 ### RAG Pipeline: Ingestion to Response Generation
