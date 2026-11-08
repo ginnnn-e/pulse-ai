@@ -22,6 +22,18 @@ Clinic staff upload printed or handwritten registration forms to automatically e
   <img src="docs/screenshots/01_staff_dashboard.png" alt="Staff Intake Dashboard" width="100%" />
 </p>
 
+#### Supported Intake Form Formats
+PulseAI accepts both standard typed digital PDF intake documents and clean block-handwritten registration forms photographed or scanned by staff.
+
+<p align="center">
+  <img src="docs/screenshots/sample_typed_pdf_form.png" alt="Sample Typed PDF Registration Form" width="48%" />
+  &nbsp;
+  <img src="docs/screenshots/sample_clean_handwritten_form.jpg" alt="Sample Clean Handwritten Registration Form" width="48%" />
+</p>
+<p align="center">
+  <sub><strong>Left:</strong> Standard digital PDF registration document (parsed via <code>pypdf</code>). &nbsp;|&nbsp; <strong>Right:</strong> Clean block-handwritten intake form (parsed via <code>PaddleOCR</code>).</sub>
+</p>
+
 ### 2. Physician Consultation Interface & Clinical Records
 Physicians manage the active patient queue, review incoming presenting complaints, enter definitive diagnoses, and prescribe medications with targeted symptom mappings and explicit patient instructions.
 
