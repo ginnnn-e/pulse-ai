@@ -16,42 +16,42 @@
 ## 2. Product Walkthrough & Screenshots
 
 ### 1. Staff Intake Dashboard
-> *Automated handwritten/digital patient intake extraction with PaddleOCR and Gemini Flash, paired with a two-tier queue (Awaiting Consultation FIFO vs. Completed Consultations).*
+Clinic staff upload printed or handwritten registration forms to automatically extract patient profiles using PaddleOCR and Gemini Flash. Intake records are organized into a two-tier queue separating patients awaiting consultation from those whose visits are complete.
 
 <p align="center">
   <img src="docs/screenshots/01_staff_dashboard.png" alt="Staff Intake Dashboard" width="100%" />
 </p>
 
 ### 2. Physician Consultation Interface & Clinical Records
-> *Physicians review intake complaints across the two-tier queue, enter definitive diagnoses, map prescribed medications to targeted symptoms, and record patient-facing instructions.*
+Physicians manage the active patient queue, review incoming presenting complaints, enter definitive diagnoses, and prescribe medications with targeted symptom mappings and explicit patient instructions.
 
 <p align="center">
   <img src="docs/screenshots/02_doctor_interface.png" alt="Doctor Consultation Interface" width="100%" />
 </p>
 
 #### Physician Consultation Modal
-> *Dedicated clinical modal allowing physicians to inspect presenting complaints, edit diagnoses, specify targeted symptoms for each prescription row, and record consultation notes.*
+Clicking any patient card opens an editable consultation workspace. Doctors can refine the clinical diagnosis, link specific medications to the symptoms they treat, and save consultation notes that immediately become available to the patient.
 
 <p align="center">
   <img src="docs/screenshots/02b_physician_consultation_modal.png" alt="Physician Consultation Modal" width="100%" />
 </p>
 
 ### 3. Grounded Patient Portal & RAG Medical Assistant
-> *Post-consultation summary, itemized quotation breakdown, and a clinical chatbot citing exact reference leaflets and consultation notes.*
+Patients can review their diagnosis, read clear explanations of their prescribed medications, and download an itemized billing quotation. They can also ask questions using a grounded medical assistant that cites verified clinic reference documents and their personal consultation notes.
 
 <p align="center">
   <img src="docs/screenshots/03_patient_portal_chat.png" alt="Patient Portal and RAG Assistant" width="100%" />
 </p>
 
 ### 4. Reference Document Knowledge Base
-> *Upload clinic care guidelines, medication leaflets, and FAQs chunked into 600-character segments and vectorized with `text-embedding-004`.*
+Clinic staff and administrators upload clinical guidelines, medication leaflets, and care protocols directly to the vector library. Each document is chunked into overlapping 600-character passages and vectorized into Supabase `pgvector` using `text-embedding-004`.
 
 <p align="center">
   <img src="docs/screenshots/04_reference_documents.png" alt="Reference Documents Knowledge Base" width="100%" />
 </p>
 
 ### 5. Assistant Telemetry & RAGAS Analytics
-> *Production observability showing aggregated Faithfulness and Context Relevance scores, response latencies, topic distributions, and complete interaction audit logs.*
+Clinic administrators track assistant reliability through single-pass RAGAS metrics, including Faithfulness and Context Relevance. The dashboard visualizes query topic distributions, response latency trends, and a complete interaction audit log with exact document citations.
 
 <p align="center">
   <img src="docs/screenshots/05_assistant_telemetry_ragas.png" alt="Assistant Telemetry and RAGAS Analytics" width="100%" />
